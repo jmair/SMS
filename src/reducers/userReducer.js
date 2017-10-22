@@ -3,8 +3,8 @@ import initialState from './initialState';
 
 export default (state = initialState.user, action) => {
   switch (action.type) {
-    case types.CREATE_USER_SUCCESS:
-      return Object.assign({}, state, action.user);
+    case types.FETCH_CONTACTS_SUCCESS:
+      return {...state, contacts: action.contacts};
     default:
       return state;
   }

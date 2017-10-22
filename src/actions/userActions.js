@@ -1,15 +1,31 @@
 import * as types from './actionTypes';
-import userApi from '../api/userApi';
+import skipioApi from '../api/skipioMockApi';
 
-export function createUserSuccess(id) {
-  return {type: types.CREATE_USER_SUCCESS, id};
+export function fetchContactsSuccess(contacts) {
+  return {type: types.FETCH_CONTACTS_SUCCESS, contacts};
 }
 
-export function createUser(user) {
+export function sendMessageSuccess() {
+  return {type: types.SEND_MESSAGE_SUCCESS};
+}
+
+export function fetchContacts(page) {
   return dispatch => {
-    return userApi.create(user)
-      .then((id) => {
-        dispatch(createUserSuccess(id));
+    return skipioApi.fetchContacts(page)
+      .then((contacts) => {
+        dispatch(fetchContactsSuccess(contacts));
+      })
+      .catch(error => {
+        throw(error);
+      });
+  };
+}
+
+export function sendMessage(id, message) {
+  return dispatch => {
+    return skipioApi.sendMessage(id, message)
+      .then(() => {
+        dispatch(sendMessageSuccess());
       })
       .catch(error => {
         throw(error);
