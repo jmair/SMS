@@ -1,0 +1,31 @@
+// Global Styles only!
+
+html, body {
+  font-family: Open Sans, sans-serif;
+  font-size: 16px;
+  color: #555
+}
+
+.form-control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ffffff;
+  opacity: 1;
+}
+
+.form-control::-moz-placeholder { /* Firefox 19+ */
+  color: #ffffff;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder { /* IE 10+ */
+  color: #ffffff;
+  opacity: 1;
+}
+
+.form-control:-moz-placeholder { /* Firefox 18- */
+  color: #ffffff;
+  opacity: 1;
+}
+
+.form-control, .input-group-addon {
+  border-radius: 6px;
+}

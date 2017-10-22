@@ -1,0 +1,28 @@
+/* eslint-disable no-var */
+
+var environment = process.env.NODE_ENV || 'development';
+
+var defaults = {
+  loggerOptions: {
+    colorize: true,
+    json: true,
+    timestamp: true,
+    level: 'debug',
+  },
+  port: 3000,
+  openBrowserOnStart: false,
+  env: environment,
+};
+
+var configuration = {
+  development: Object.assign({}, defaults, {
+    openBrowserOnStart: true
+  }),
+  test: Object.assign({}, defaults, {
+    port: 9999
+  }),
+  production: Object.assign({}, defaults, {
+  })
+};
+
+module.exports = configuration[environment];
