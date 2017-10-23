@@ -4,37 +4,67 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/userActions';
 import ContactsList from './ContactsList';
+import Modal from './Modal';
+import toastr from 'toastr';
 
 class HomePage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-
+      message: '',
+      contactId: null,
+      modalActive: false
     };
 
-    this.fetchContacts = this.fetchContacts.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
-  fetchContacts() {
-    this.props.actions.fetchContacts(1);
+  sendMessage() {
+    const {contactId, message} = this.state;
+
+    if (!message) {
+      toastr.error('Message is blank.');
+      return;
+    }
+    this.props.actions.sendMessage(contactId, message)
+      .then(() => this.setState({modalActive: false, message: ''}))
+      .then(() => toastr.success('Your message has been sent.'))
+      .catch(() => toastr.error('Sorry, unable to send your message at this time.'));
   }
 
-  sendMessage(e) {
-    this.props.actions.sendMessage(e.target.dataset.id);
+  changePage(e) {
+    const direction = e.target.dataset.dir;
+    const currentPage = parseInt(e.target.dataset.curr);
+    const page = direction === 'forward' ? currentPage + 1 : currentPage - 1;
+    this.props.actions.fetchContacts(page);
   }
 
   handleMessageChange(e) {
-    this.props.actions.sendMessage(e.target.dataset.id);
+    this.setState({message: e.target.value});
+  }
+
+  toggleModal(e) {
+    const contactId = e.target.dataset.id;
+    this.setState({modalActive: !this.state.modalActive, contactId});
   }
 
   render() {
-    const {contacts: {data}} = this.props.user;
+    const {contacts} = this.props.user;
     return (
       <div>
-        {data && <ContactsList contacts={data} sendMessage={this.sendMessage} handleMessageChange={this.handleMessageChange}/>}
+        {contacts.data &&
+        <div>
+          <ContactsList contacts={contacts} toggleModal={this.toggleModal} changePage={this.changePage}/>
+          {this.state.modalActive &&
+          <Modal message={this.state.message} handleMessageChange={this.handleMessageChange}
+                 toggleModal={this.toggleModal} sendMessage={this.sendMessage}/>
+          }
+        </div>
+        }
       </div>
     );
   }

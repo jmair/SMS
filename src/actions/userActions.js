@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import skipioApi from '../api/skipioMockApi';
+import skipioApi from '../api/skipioApi';
 
 export function fetchContactsSuccess(contacts) {
   return {type: types.FETCH_CONTACTS_SUCCESS, contacts};

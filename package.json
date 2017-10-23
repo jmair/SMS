@@ -59,6 +59,7 @@
     "nodemailer": "^4.0.1",
     "npm-run-all": "^4.0.1",
     "open": "0.0.5",
+    "prop-types": "^15.6.0",
     "radium": "^0.18.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

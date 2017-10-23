@@ -554,8 +554,12 @@ class SkipioApi {
     });
   }
 
-  static sendMessage(message) {
-    return {};
+  static sendMessage(id, message) {
+    return new Promise((resolve, reject) => {
+      const response = {status: 'success'};
+      resolve(Object.assign({}, response));
+      // reject();
+    });
   }
 }
 

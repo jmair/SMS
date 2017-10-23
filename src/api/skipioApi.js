@@ -10,10 +10,15 @@ class SkipioApi {
     }).then(res => res.json());
   }
 
-  static sendMessage(message) {
-    return fetch('/api/users/create', {
+  static sendMessage(id, message) {
+    const body = {
+      recipients: [id],
+      message: {message}
+    };
+
+    return fetch(`${config.skipioApiUrl}/api/v2/messages?token=${config.skipioApiToken}`, {
       method: 'POST',
-      body: message
+      body
     }).then(res => res.json());
   }
 }
