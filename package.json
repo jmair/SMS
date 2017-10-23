@@ -1,7 +1,7 @@
 {
-  "name": "Template",
+  "name": "skipioSms",
   "version": "1.0.0",
-  "description": "React Template",
+  "description": "Skipio SMS",
   "scripts": {
     "build": "babel-node express_src/build.js",
     "clean-dist": "rimraf ./dist && rimraf ./express_dist && mkdir dist",
@@ -100,6 +100,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "tbd"
+    "url": "https://github.com/jmair/SMS.git"
   }
 }
