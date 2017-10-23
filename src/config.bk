@@ -12,7 +12,7 @@ var defaults = {
   port: 3000,
   openBrowserOnStart: false,
   env: environment,
-  skipioApiToken: ''
+  skipioApiToken: '',
   skipioApiUrl: 'http://stage.skipio.com'
 };
 
@@ -24,7 +24,7 @@ var configuration = {
     port: 9999
   }),
   production: Object.assign({}, defaults, {
-    skipioApiToken: ''
+    skipioApiToken: '',
     skipioApiUrl: 'http://app.skipio.com'
   })
 };
