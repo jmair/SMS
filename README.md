@@ -11,3 +11,10 @@ npm install
 cp src/config.bk src/config.js
 ```
 3. Add Skipio API Token to src/config.js under defaults object
+```bash
+vim src/config
+```
+4. Start application
+```bash
+npm start
+```
